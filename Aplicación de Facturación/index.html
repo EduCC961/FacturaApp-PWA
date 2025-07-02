@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Aplicación de Facturación</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- hacer el llamado a nuestro style.css -->
+    <link rel="stylesheet" href="./public/css/estilo.css" />
+    <!-- hacer el llamado a nuestro manifest.json -->
+    <link rel="manifest" href="./public/manifest.json" />
+    <meta name="theme-color" content="#4caf50" />
+  </head>
+  <body>
+    <h1>Aplicación de Facturación</h1>
+
+    <!-- Registro de Clientes -->
+    <section>
+      <h2>Registro de Clientes</h2>
+      <label for="cliente-nombre">Nombre:</label>
+      <input type="text" id="cliente-nombre" />
+
+      <label for="cliente-cedula">Cédula:</label>
+      <input type="text" id="cliente-cedula" />
+
+      <label for="cliente-direccion">Dirección:</label>
+      <input type="text" id="cliente-direccion" />
+
+      <button id="btn-agregar-cliente">Agregar Cliente</button>
+
+      <cliente-list></cliente-list>
+    </section>
+
+    <!-- Registro de Productos -->
+    <section>
+      <h2>Registro de Productos</h2>
+      <label for="producto-nombre">Nombre del Producto:</label>
+      <input type="text" id="producto-nombre" />
+
+      <label for="producto-codigo">Código:</label>
+      <input type="text" id="producto-codigo" />
+
+      <label for="producto-precio">Precio:</label>
+      <input type="number" id="producto-precio" step="0.01" />
+
+      <button id="btn-agregar-producto">Agregar Producto</button>
+
+      <producto-list></producto-list>
+    </section>
+
+    <!-- Factura -->
+    <section>
+      <h2>Factura</h2>
+      <label for="cliente-select">Cliente:</label>
+      <select id="cliente-select"></select>
+
+      <label for="producto-select">Producto:</label>
+      <select id="producto-select"></select>
+
+      <label for="producto-cantidad">Cantidad:</label>
+      <input type="number" id="producto-cantidad" />
+
+      <button id="btn-agregar-producto-factura">Agregar a Factura</button>
+      <button id="btn-guardar-factura">Guardar Factura</button>
+
+      <factura-resumen></factura-resumen>
+    </section>
+    <!-- Facturas Guardadas -->
+    <section>
+      <h2>Facturas Guardadas</h2>
+      <label for="factura-select">Selecciona una factura:</label>
+      <select id="factura-select"></select>
+      <div id="factura-detalle"></div>
+    </section>
+
+    <!-- Mensaje de conexión -->
+    <div
+      id="offline-message"
+      style="display:none; color: red; text-align: center; margin: 10px;"
+    >
+      Estás sin conexión. Algunas funciones puede que no esten disponibles.
+    </div>
+    
+    <script type="module" src="./public/js/main.js"></script>
+    
+    <!-- Esto activa el Service Worker para que la app funcione sin internet -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./public/service-worker.js");//
+        });
+      }
+
+      // Esto muestra un mensaje si no tienes internet
+      function updateOnlineStatus() {
+        const msg = document.getElementById("offline-message");
+        if (navigator.onLine) {
+          msg.style.display = "none";
+        } else {
+          msg.style.display = "block";
+        }
+      }
+      window.addEventListener("online", updateOnlineStatus); // Detecta cuando vuelves a estar en linea
+      window.addEventListener("offline", updateOnlineStatus);// Detecta cuando te desconectas
+      updateOnlineStatus();
+    </script>
+  </body>
+</html>

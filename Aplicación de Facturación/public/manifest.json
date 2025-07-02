@@ -1,0 +1,32 @@
+{
+  "name": "Aplicacion de Facturacion",
+  "short_name": "Facturacion",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#f5f5f5",
+  "theme_color": "#1976d2",
+  "description": "App para registrar clientes, productos y facturas.",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "https://i.postimg.cc/43c0qnbt/facturacion.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.postimg.cc/43c0qnbt/facturacion.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.postimg.cc/43c0qnbt/facturacion.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.postimg.cc/43c0qnbt/facturacion.png",
+      "sizes": "720x720",
+      "type": "image/png"
+    }
+  ]
+}
